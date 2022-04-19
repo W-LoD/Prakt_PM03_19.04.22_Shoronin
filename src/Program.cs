@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace src
 {
@@ -18,7 +18,6 @@ namespace src
             }
             catch (Exception)
             {
-
                 Console.WriteLine("Размер массива должен быть числом больше 0!");
             }
             TouristicOperator touristicOperator = new TouristicOperator();
@@ -32,17 +31,8 @@ namespace src
                 touristicOperator.Trips[i].Size_of_the_tour_group = int.Parse(Console.ReadLine());
             }
             touristicOperator.Sort_mas(touristicOperator.Trips);
-            for (int i = 0; i < N; i++)
-            {
-                Console.WriteLine("\n" + touristicOperator.Trips[i].Duration + " "
-                    + touristicOperator.Trips[i].Price + " "
-                    + touristicOperator.Trips[i].Size_of_the_tour_group);
-            }
-        }
-
-            
-            
-        
+            touristicOperator.Write_to_file(touristicOperator, N);
+        }  
     }
     public class Trip
     {
@@ -61,12 +51,25 @@ namespace src
             {
                 for (int j = i + 1; j < Trips.Length; j++)
                 {
-                    if (Trips[i].Price > Trips[j].Price && Trips[i].Size_of_the_tour_group > Trips[j].Size_of_the_tour_group)
+                    if ((Trips[i].Price > Trips[j].Price) || (Trips[i].Size_of_the_tour_group > Trips[j].Size_of_the_tour_group))
                     {
                         temp = Trips[i];
                         Trips[i] = Trips[j];
                         Trips[j] = temp;
                     }
+                }
+            }
+        }
+
+        public void Write_to_file(TouristicOperator touristicOperator, int N)
+        {
+            using (StreamWriter sr = new StreamWriter("Text.txt", true))
+            {
+                for (int i = 0; i < N; i++)
+                {
+                    sr.WriteLine("Продолжительность поездки: " + touristicOperator.Trips[i].Duration + " Цена поездки: " 
+                        + touristicOperator.Trips[i].Price + " Размер туристической группы: " 
+                        + touristicOperator.Trips[i].Size_of_the_tour_group);
                 }
             }
         }
