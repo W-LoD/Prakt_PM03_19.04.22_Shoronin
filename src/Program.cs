@@ -12,4 +12,10 @@ namespace src
         {
         }
     }
+    public class Trip
+    {
+        public int Duration;
+        public int Price;
+        public int Size_of_the_tour_group;
+    }
 }
