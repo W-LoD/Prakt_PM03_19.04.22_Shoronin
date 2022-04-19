@@ -28,9 +28,17 @@ namespace src
             for (int i = 0; i < N; i++)
             {
                 touristicOperator.Trips[i] = new Trip(); //Распределение памяти указателям
-                touristicOperator.Trips[i].Duration = int.Parse(Console.ReadLine()); //Заполнение поля Продолжительность поездки
-                touristicOperator.Trips[i].Price = int.Parse(Console.ReadLine()); //Заполнение поля Цена
-                touristicOperator.Trips[i].Size_of_the_tour_group = int.Parse(Console.ReadLine()); //Заполнение поля Размер туристической группы
+                try
+                {
+                    touristicOperator.Trips[i].Duration = int.Parse(Console.ReadLine()); //Заполнение поля Продолжительность поездки
+                    touristicOperator.Trips[i].Price = int.Parse(Console.ReadLine()); //Заполнение поля Цена
+                    touristicOperator.Trips[i].Size_of_the_tour_group = int.Parse(Console.ReadLine()); //Заполнение поля Размер туристической группы
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Данные должны быть целыми числами!");
+                    i--;
+                }
             }
             touristicOperator.Sort_mas(touristicOperator.Trips); //Вызов метода сортировки массива
             touristicOperator.Write_to_file(touristicOperator, N); //Вызов метода записи в файл
