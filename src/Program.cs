@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 
 namespace src
@@ -10,41 +7,46 @@ namespace src
     {
         static void Main(string[] args)
         {
-            int N = 0;
+            int N = -1; //Для размера массива
             Console.WriteLine("Введите размер массива N= ");
-            try
+            while (N < 1)
             {
-                N = int.Parse(Console.ReadLine());
+                try
+                {
+                    N = int.Parse(Console.ReadLine()); // Считывание размера
+                    if(N<=0)
+                        Console.WriteLine("Размер массива должен быть целым числом больше 0!");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Размер массива должен быть целым числом больше 0!");
+                }
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Размер массива должен быть числом больше 0!");
-            }
-            TouristicOperator touristicOperator = new TouristicOperator();
-            touristicOperator.Trips = new Trip[N];
-            Console.WriteLine("Введите элементы массива(Продолжительность поездки в днях, Цену поездки, Размер туристической группы)");
+            TouristicOperator touristicOperator = new TouristicOperator(); //Создание экземпляра класса TouristicOperator
+            touristicOperator.Trips = new Trip[N]; //Создание массива указателей размера N
+            Console.WriteLine("Введите элементы массива(Продолжительность поездки в днях, Цену поездки целой суммой в рублях, Размер туристической группы)");
             for (int i = 0; i < N; i++)
             {
-                touristicOperator.Trips[i] = new Trip();
-                touristicOperator.Trips[i].Duration = int.Parse(Console.ReadLine());
-                touristicOperator.Trips[i].Price = int.Parse(Console.ReadLine());
-                touristicOperator.Trips[i].Size_of_the_tour_group = int.Parse(Console.ReadLine());
+                touristicOperator.Trips[i] = new Trip(); //Распределение памяти указателям
+                touristicOperator.Trips[i].Duration = int.Parse(Console.ReadLine()); //Заполнение поля Продолжительность поездки
+                touristicOperator.Trips[i].Price = int.Parse(Console.ReadLine()); //Заполнение поля Цена
+                touristicOperator.Trips[i].Size_of_the_tour_group = int.Parse(Console.ReadLine()); //Заполнение поля Размер туристической группы
             }
-            touristicOperator.Sort_mas(touristicOperator.Trips);
-            touristicOperator.Write_to_file(touristicOperator, N);
+            touristicOperator.Sort_mas(touristicOperator.Trips); //Вызов метода сортировки массива
+            touristicOperator.Write_to_file(touristicOperator, N); //Вызов метода записи в файл
         }  
     }
-    public class Trip
+    public class Trip //Класс Trip с соответствующими полями
     {
         public int Duration;
         public int Price;
         public int Size_of_the_tour_group;
     }
-    public class TouristicOperator
+    public class TouristicOperator //Класс TouristicOperator с соответствующими полями
     {
-        public Trip[] Trips;
+        public Trip[] Trips; //Хранение массива Trip
 
-        public void Sort_mas(Trip[] Trips)
+        public void Sort_mas(Trip[] Trips) //Сортировка массива по двум полям
         {
             Trip temp;
             for (int i = 0; i < Trips.Length - 1; i++)
@@ -61,7 +63,7 @@ namespace src
             }
         }
 
-        public void Write_to_file(TouristicOperator touristicOperator, int N)
+        public void Write_to_file(TouristicOperator touristicOperator, int N) //Запись массива в файл
         {
             using (StreamWriter sr = new StreamWriter("Text.txt", true))
             {
