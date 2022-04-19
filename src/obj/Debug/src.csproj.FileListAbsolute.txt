@@ -1,0 +1,7 @@
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\bin\Debug\src.exe.config
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\bin\Debug\src.exe
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\bin\Debug\src.pdb
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\obj\Debug\src.csprojAssemblyReference.cache
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\obj\Debug\src.csproj.CoreCompileInputs.cache
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\obj\Debug\src.exe
+D:\Users\stu-pksp118\Source\Repos\Prakt_PM03_19.04.22_Shoronin\src\obj\Debug\src.pdb
